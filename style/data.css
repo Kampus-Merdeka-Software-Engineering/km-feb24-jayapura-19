@@ -1,0 +1,356 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300..700&display=swap');
+
+/* Global Style */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background-color: #F6F7F9;
+}
+
+/* End of Global Style */
+
+
+/* Sidebar */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 80px;
+    background-color: white;
+    padding: 40px 24px;
+    transition: width 0.3s ease;
+    border: 1.5px solid #F3F5F7;
+}
+
+
+.sidebar .akun{
+    margin-top: 80px;
+}
+
+.sidebar .profile{
+    height: 35px;
+    
+}
+
+.sidebar.active {
+    width: 260px;
+}
+
+.sidebar span {
+    display: none;
+}
+
+.sidebar.active span {
+    display: block;
+}
+
+.sidebar .main-menu p,
+.sidebar .preferences p {
+    display: none;
+}
+
+.sidebar.active .main-menu p,
+.sidebar.active .preferences p {
+    display: block;
+}
+
+.sidebar.active #btn {
+    position: absolute;
+    top: 22px;
+    left: 86%;
+    line-height: 50px;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+.sidebar .logo {
+    position: relative;
+}
+
+.sidebar .logo span {
+    position: absolute;
+    top: 50%;
+    left: 38%;
+    transform: translate(-50%, -50%);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+}
+
+.sidebar .logo img {
+    margin-right: 16px;
+}
+
+#btn {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 24px;
+}
+
+#btn.rotate {
+    transform: rotate(180deg);
+}
+
+.sidebar .main-menu, .sidebar .preferences {
+    font-size: 14px;
+    color: #90A3BF;
+    font-weight: 500;
+    position: relative;
+    margin-top: 48px;
+    margin-bottom: 24px;
+}
+
+.sidebar .main-menu p, .sidebar .preferences p {
+    font-size: 14px;
+    color: #90A3BF;
+    font-weight: 500;
+    position: absolute;
+    left: 16%;
+    transform: translateX(-50%);
+}
+
+.sidebar .main-menu {
+    top: 0%;
+    transform: translateY(-50%);
+}
+
+.sidebar .preferences {
+    bottom: 0;
+    transform: translateY(50%);
+    margin-top: 80px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    position: relative;
+    top: 36px;
+}
+
+.sidebar ul li {
+    margin-bottom: 24px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #596780;
+    font-weight: 600;
+}
+
+.sidebar ul li a span {
+    margin-left: 12px;
+    margin-top: -2px;
+}
+
+.sidebar.active ul li a {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar.active ul li a span {
+    margin-left: 12px;
+    margin-top: -2px;
+}
+
+
+.sidebar.active span, .sidebar.active p, .sidebar.active li a span {
+    color: #596780;
+}
+
+/* End of Sidebar */
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    height: 80px;
+    background-color: white;
+    transition: all 0.3s ease;
+    border: 2px solid #F3F5F7;
+    margin-left: 60px;
+}
+
+.header .search-bar{
+    height: 40px;
+    width: 500px;
+    padding-left: 24px;
+    border: 1.5px solid #C3D4E9;
+    border-radius: 10px;
+}
+
+.header .search-button {
+    background-color: #7C5CFC;
+    border: none;
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+}
+
+.header .search-bar, .search-button{
+    margin: 8px;
+}
+
+.sidebar.active ~ .header{
+    margin-left: 260px;
+    width: calc(100%-260px);
+}
+
+.sidebar.active ~ .header .search-bar{
+    margin-left: 20px;
+}
+/* End of Header */
+
+
+
+.shorter {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-left: 130px;
+    margin-top: 40px;
+    width: 1088px;
+    height: 140px;
+    justify-content: center;
+    padding-left: 30px;
+    border-radius: 12px;
+}
+
+.shorter label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.shorter select {
+    width: 160px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px 48px 10px 48px;
+}
+
+.sidebar.active ~ .shorter{
+    margin-left: 310px;
+    width: 900px;
+}
+
+.sidebar.active ~ .shorter select{
+    width: 130px;
+    margin: 10px 36px 10px 36px;
+}
+
+/* End Shorter */
+
+
+
+/* Main Ocntent */
+
+.main{
+    display: block;
+    transition: all 0.3s ease;
+    border: 2px solid #F3F5F7;
+}
+
+.data{
+    background-color: white;
+    height: 500px;
+    width: 1100px;
+    overflow-x: auto;
+    margin: 40px 0px 40px 130px;
+}
+
+.row th{
+   padding: 20px 24px;   
+}
+
+tbody td{
+    width: 40px;
+    padding: 0px 20px 0px 20px;
+    font-size: 13px;
+    text-align: center;
+    line-height: 24px;
+}
+
+.sidebar.active ~ .main{
+    margin-left: 180px;
+    width: calc(100%-190px);
+}
+
+.sidebar.active ~ .main .data{
+    width: 900px;
+}
+
+
+
+
+
+/* End of Main Content */
+
+
+/* Pagination */
+
+/* Tambahkan gaya untuk pagination */
+.pagination {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination button {
+    padding: 8px 16px;
+    background-color: #7C5CFC;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pagination button:hover {
+    background-color: #5635db;
+}
+
+.pagination span {
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+
+/* End of Pagination */
+
+
+
+/* Footer */
+
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    height: 80px;
+    background-color: white;
+    transition: all 0.3s ease;
+    border: 2px solid #F3F5F7;
+    margin-left: 60px;
+    font-weight: 600;
+    color: #596780;
+    border: 1.5px solid #F3F5F7;
+}
+
+.sidebar.active ~ .footer{
+    margin-left: 260px;
+    width: calc(100%-260px);
+}
+
+/* Footer */

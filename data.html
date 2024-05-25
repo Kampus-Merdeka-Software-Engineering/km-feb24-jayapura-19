@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jayapura19</title>
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="./style/data.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="top">
+            <div class="logo">
+                <img src="./component/ungu.svg" alt="">
+                <span>Jayapura19</span>
+            </div>
+            <!-- Kode Tombol -->
+            <img src="./component/hide.svg" id="btn" class="rotate" alt="">
+        </div>
+        <div class="main-menu">
+            <p>Main Menu</p>
+        </div>
+        <ul>
+            <li>
+                <a href="./index.html">
+                    <img src="./component/dashboardIcon.svg" alt="">
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="./data.html">
+                    <img src="./component/dataIcon.svg" alt="">
+                    <span>Data</span>
+                </a>
+            </li>
+        </ul>
+        <div class="preferences">
+            <p> Preferences</p>
+        </div>
+        <ul>
+            <li>
+                <a href="#">
+                    <img src="./component/setting.svg" alt="">
+                    <span>Settings</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./component/help.svg" alt="">
+                    <span>Help Center</span>
+                </a>
+            </li>
+            <li class="akun">
+                <a href="#">
+                    <img src="./component/profile.svg" alt="Account" class="profile">
+                    <span>Adnan Kun</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- End of Sidebar -->
+
+    <!-- Header -->
+    <nav class="header">
+        <header>
+            <input type="text" class="search-bar" placeholder="Search something here...">
+            <button class="search-button">
+                <img src="./component/search.svg" alt="">
+            </button>
+        </header>
+    </nav>
+    <!-- End Header -->
+
+    <!-- Shorter -->
+    <div class="shorter">
+        <!-- Filtering -->
+        <div class="short-1">
+            <label for="storeFilter"></label>
+            <select id="storeFilter">
+                <option value="">All</option>
+            </select>
+            <label for="categoryFilter"></label>
+            <select id="categoryFilter">
+                <option value="">All</option>
+            </select>
+            <label for="priceRangeFilter"></label>
+            <select id="priceRangeFilter">
+                <option value="">All</option>
+            </select>
+            <label for="typeFilter"></label>
+            <select id="typeFilter">
+                <option value="">All</option>
+            </select>
+        </div>
+        <div class="short-2">
+            <label for="seasonFilter"></label>
+            <select id="seasonFilter">
+                <option value="">All</option>
+            </select>
+            <label for="weekdaysEndFilter"></label>
+            <select id="weekdaysEndFilter">
+                <option value="">All</option>
+            </select>
+            <label for="monthFilter"></label>
+            <select id="monthFilter">
+                <option value="">All</option>
+            </select>
+            <label for="timeFilter"></label>
+            <select id="timeFilter">
+                <option value="">All</option>
+            </select>
+        </div>
+        <!-- End Filtering -->
+    </div>
+    <!-- End Shorter -->
+
+
+    <main class="main">
+        <div class="data" id="data">
+            <table clas="data-table" id="data-table">
+                <thead>
+                    <tr class="row">
+                        <th>TXID</th>
+                        <th>Date</th>
+                        <th>Month</th>
+                        <th>Week</th>
+                        <th>Day</th>
+                        <th>Weekdays/End</th>
+                        <th>TX Time</th>
+                        <th>Time</th>
+                        <th>Season</th>
+                        <th>TX Quantity</th>
+                        <th>Store ID</th>
+                        <th>Store Location</th>
+                        <th>Product ID</th>
+                        <th>Unit Price</th>
+                        <th>Price Range</th>
+                        <th>Revenue</th>
+                        <th>Product Category</th>
+                        <th>Food Baverages</th>
+                        <th>Product Type</th>
+                        <th>Product Detail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Baris data akan dimasukkan di sini oleh JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination">
+            <button id="prev">Prev</button>
+            <span id="page-number">1</span>
+            <button id="next">Next</button>
+        </div>
+    </main>
+
+
+    <footer class="footer">
+        <p>
+            © This website is managed by Team 19 Jayapura
+        </p>
+    </footer>
+
+    <!-- Script JS -->
+    <script src="./script/importData.js"></script>
+    <script src="./script/interaction.js"></script>
+    <!-- Chart.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>
