@@ -1,6 +1,169 @@
 fetch('./script/dataKopi.json')
   .then(response => response.json())
   .then(data => {
+    // Menghitung total metrik
+    let totalRevenue = 0;
+    let totalProductSold = 0;
+    let totalTransaction = data.length;  // Menghitung jumlah total transaksi (count of rows)
+
+    const storeSet = new Set(); // Set untuk menyimpan store yang unik
+
+    data.forEach(item => {
+      totalRevenue += parseFloat(item.Revenue);
+      totalProductSold += parseInt(item.transaction_qty);
+      storeSet.add(item.store_location); // Menambahkan store_location ke dalam set
+    });
+
+    let totalStore = storeSet.size; // Menghitung jumlah store unik
+
+    // Memperbarui elemen HTML dengan nilai metrik
+    document.getElementById('totalRevenue').textContent = `$${totalRevenue.toLocaleString()}`;
+    document.getElementById('totalProductSold').textContent = totalProductSold.toLocaleString();
+    document.getElementById('totalTransaction').textContent = totalTransaction.toLocaleString();
+    document.getElementById('totalStore').textContent = totalStore.toLocaleString();
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+
+
+
+
+
+
+// Trend
+fetch('./script/dataKopi.json')
+  .then(response => response.json())
+  .then(data => {
+    // Mengelompokkan data berdasarkan Month, lalu menjumlahkan revenue dan transaction_qty
+    const revenueAndQtyByMonth = data.reduce((acc, item) => {
+        const month = item.Month;
+        if (!acc[month]) {
+            acc[month] = { revenue: 0, quantity: 0 };
+        }
+        acc[month].revenue += parseFloat(item.Revenue);
+        acc[month].quantity += parseInt(item.transaction_qty);
+        return acc;
+    }, {});
+
+    // Mendapatkan daftar bulan
+    const months = Object.keys(revenueAndQtyByMonth);
+
+    // Mendapatkan data revenue dan quantity untuk setiap bulan
+    const revenueData = months.map(month => revenueAndQtyByMonth[month].revenue);
+    const quantityData = months.map(month => revenueAndQtyByMonth[month].quantity);
+
+    // Data untuk chart
+    const revenueAndQtyChartData = {
+        labels: months,
+        datasets: [
+            {
+                label: 'Revenue',
+                backgroundColor: '#5CAFFC',
+                borderColor: '#fff',
+                data: quantityData
+            },
+            {
+                label: 'Total Quantity Sold',
+                backgroundColor: '#725CFF',
+                borderColor: '#fff',
+                data: revenueData
+            }
+        ]
+    };
+
+    // Membuat chart
+    const ctxRevenueAndQty = document.getElementById('revenueSales').getContext('2d');
+    const revenueAndQtyChart = new Chart(ctxRevenueAndQty, {
+        type: 'bar',
+        data: revenueAndQtyChartData,
+        options: {
+            scales: {
+                x: {
+                    stacked: false
+                },
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+            },
+        },
+    });
+})
+.catch(error => {
+    console.error('Error:', error);
+});
+
+
+
+
+
+
+
+
+
+fetch('./script/dataKopi.json')
+  .then(response => response.json())
+  .then(data => {
+
+
+    // STORE LOCATION
+        // Mengelompokkan dan menjumlahkan revenue berdasarkan store_location
+        const revenueByStore = data.reduce((acc, item) => {
+            if (!acc[item.store_location]) {
+                acc[item.store_location] = 0;
+            }
+            acc[item.store_location] += parseFloat(item.Revenue);
+            return acc;
+        }, {});
+
+        // Mendapatkan label dan data dari objek yang dikelompokkan
+        const labels = Object.keys(revenueByStore);
+        const salesData = Object.values(revenueByStore);
+
+        // Membuat data untuk chart
+        const storeData = {
+            labels: labels,
+            datasets: [{
+                label: 'Revenue by Store',
+                backgroundColor: ['#EB7CA6', '#5CAFFC', '#7C5CFC'],
+                borderColor: '#fff',
+                data: salesData
+            }]
+        };
+
+        // Membuat chart
+        const ctxStore = document.getElementById('store').getContext('2d');
+        const storeChart = new Chart(ctxStore, {
+            type: 'bar',
+            data: storeData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                },
+            },
+        });
+
+
+
+
+
+
+
+
+// PRICE RANGE
     // Mengelompokkan data transaksi berdasarkan rentang harga
     const salesByPriceRange = data.reduce((acc, transaction) => {
         const priceRange = transaction.Price_Range;
@@ -48,6 +211,12 @@ fetch('./script/dataKopi.json')
         },
     });
 
+
+
+
+
+
+    // SEASON
     // Mengelompokkan data transaksi berdasarkan musim (season)
     const salesBySeason = data.reduce((acc, transaction) => {
         const season = transaction.Season;
@@ -95,6 +264,75 @@ fetch('./script/dataKopi.json')
         },
     });
 
+
+
+
+
+
+
+    // Product Type
+// Mengelompokkan data berdasarkan product_type dan Month, lalu menjumlahkan revenue
+const revenueByProductType = data.reduce((acc, item) => {
+    const key = `${item.Month}-${item.food_baverages}`;
+    if (!acc[key]) {
+        acc[key] = 0;
+    }
+    acc[key] += parseFloat(item.Revenue);
+    return acc;
+}, {});
+
+// Mendapatkan daftar bulan dan jenis produk
+const months = [...new Set(data.map(item => item.Month))];
+const productTypes = [...new Set(data.map(item => item.food_baverages))];
+
+// Warna yang akan digunakan untuk dataset
+const colors = ['#7C5CFC', '#5CAFFC', '#EB7CA6'];
+
+// Mengelompokkan data untuk chart product type
+const productTypeData = productTypes.map((type, index) => {
+    return {
+        label: type,
+        data: months.map(month => revenueByProductType[`${month}-${type}`] || 0),
+        backgroundColor: colors[index % colors.length]  // Menggunakan warna secara berulang jika jenis produk lebih dari jumlah warna
+    };
+});
+
+// Data untuk chart product type
+const productTypeChartData = {
+    labels: months,
+    datasets: productTypeData
+};
+
+// Membuat chart product type
+const ctxProductType = document.getElementById('productType').getContext('2d');
+const productTypeChart = new Chart(ctxProductType, {
+    type: 'bar',
+    data: productTypeChartData,
+    options: {
+        scales: {
+            x: {
+                stacked: true
+            },
+            y: {
+                stacked: true,
+                beginAtZero: true
+            }
+        },
+        plugins: {
+            legend: {
+                position: 'bottom',
+            },
+        },
+    },
+});
+
+
+
+
+
+
+
+// BUSY HOUR
 // Mengelompokkan data transaksi berdasarkan waktu (Time)
 const salesByTime = data.reduce((acc, transaction) => {
     const time = transaction.Time;
@@ -146,72 +384,60 @@ var salesByTimeChart = new Chart(ctxSalesByTime, {
     },
 });
 
- // Mengelompokkan data transaksi berdasarkan bulan dan minggu dengan spasi
- const salesByWeekAndMonth = data.reduce((acc, transaction) => {
-    const month = transaction.Month;
-    const week = transaction.Week.trim(); // Trim any leading or trailing spaces
 
-    if (!acc[month]) {
-        acc[month] = { "Week 1": 0, "Week 2": 0, "Week 3": 0, "Week 4": 0 };
-    }
 
-    // Check if week is valid and falls within the expected range
-    if (week === "1" || week === "2" || week === "3" || week === "4") {
-        acc[month][`Week ${week}`] += parseFloat(transaction.Revenue);
+
+// BUSY WEEK
+// Mengelompokkan data berdasarkan week dan Month, lalu menjumlahkan revenue
+const revenueByBusyWeek = data.reduce((acc, item) => {
+    const key = `${item.Month}-${item.Week}`;
+    if (!acc[key]) {
+        acc[key] = {};
     }
+    if (!acc[key][item.Week]) {
+        acc[key][item.Week] = 0;
+    }
+    acc[key][item.Week] += parseFloat(item.Revenue);
     return acc;
 }, {});
 
-// Debug log hasil pengelompokan
-console.log('Sales by Week and Month:', salesByWeekAndMonth);
+// Mendapatkan daftar bulan dan minggu
+const busyWeekMonths = [...new Set(data.map(item => item.Month))];
+const busyWeeks = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
 
-// Array labels berdasarkan bulan
-const monthLabels = Object.keys(salesByWeekAndMonth);
+// Warna yang akan digunakan untuk dataset
+const busyWeekColors = ['#7C5CFC', '#5CAFFC', '#EB7CA6', '#FF7262']; // Ditambahkan warna untuk masing-masing minggu
 
-// Array data total penjualan per minggu berdasarkan bulan
-const week1SalesData = monthLabels.map(month => salesByWeekAndMonth[month]["Week 1"]);
-const week2SalesData = monthLabels.map(month => salesByWeekAndMonth[month]["Week 2"]);
-const week3SalesData = monthLabels.map(month => salesByWeekAndMonth[month]["Week 3"]);
-const week4SalesData = monthLabels.map(month => salesByWeekAndMonth[month]["Week 4"]);
+// Mengelompokkan data untuk chart busy week
+const busyWeekData = busyWeeks.map((week, index) => {
+    return {
+        label: week,
+        data: busyWeekMonths.map(month => {
+            const revenue = revenueByBusyWeek[`${month}-${week}`];
+            return revenue ? revenue[week] || 0 : 0; // Menggunakan variabel 'week' sebagai kunci objek, bukan 'item.Week'
+        }),
+        backgroundColor: busyWeekColors[index % busyWeekColors.length]  // Menggunakan warna secara berulang jika jumlah minggu lebih dari jumlah warna
+    };
+});
 
-// Data untuk chart Sales by Week
-const weeklySalesData = {
-    labels: monthLabels,
-    datasets: [
-        {
-            label: 'Week 1',
-            backgroundColor: '#725CFF',
-            data: week1SalesData
-        },
-        {
-            label: 'Week 2',
-            backgroundColor: '#5CAFFC',
-            data: week2SalesData
-        },
-        {
-            label: 'Week 3',
-            backgroundColor: '#EB7CA6',
-            data: week3SalesData
-        },
-        {
-            label: 'Week 4',
-            backgroundColor: '#FF7262',
-            data: week4SalesData
-        }
-    ]
+// Data untuk chart busy week
+const busyWeekChartData = {
+    labels: busyWeekMonths,
+    datasets: busyWeekData
 };
 
-// Debug log data untuk chart
-console.log('Weekly Sales Data:', weeklySalesData);
-
-// Menggambar chart Sales by Week
-var ctxBusyWeek = document.getElementById('busyWeek').getContext('2d');
-var busyWeekChart = new Chart(ctxBusyWeek, {
+// Membuat chart busy week
+const ctxBusyWeek = document.getElementById('busyWeek').getContext('2d');
+const busyWeekChart = new Chart(ctxBusyWeek, {
     type: 'bar',
-    data: weeklySalesData,
+    data: busyWeekChartData,
     options: {
         scales: {
+            x: {
+                stacked: true
+            },
             y: {
+                stacked: true,
                 beginAtZero: true
             }
         },
@@ -223,6 +449,88 @@ var busyWeekChart = new Chart(ctxBusyWeek, {
     },
 });
 
+
+
+
+
+// Weekdays / Weekends
+fetch('./script/dataKopi.json')
+  .then(response => response.json())
+  .then(data => {
+    // Weekend and Weekdays
+    // Mengelompokkan data berdasarkan Weekdays_End dan Month, lalu menjumlahkan revenue
+    const revenueByWeekendWeekdays = data.reduce((acc, item) => {
+        const key = `${item.Month}-${item.Weekdays_End}`;
+        if (!acc[key]) {
+            acc[key] = 0;
+        }
+        acc[key] += parseFloat(item.Revenue);
+        return acc;
+    }, {});
+
+    // Mendapatkan daftar bulan dan tipe hari (Weekdays atau Weekend)
+    const weekendWeekdaysMonths = [...new Set(data.map(item => item.Month))];
+    const weekendWeekdaysTypes = ['Weekdays', 'Weekend'];
+
+    // Warna yang akan digunakan untuk dataset
+    const weekendWeekdaysColors = ['#725CFF', '#5CAFFC'];
+
+    // Mengelompokkan data untuk chart weekend dan weekdays
+    const weekendWeekdaysData = weekendWeekdaysTypes.map((type, index) => {
+        return {
+            label: type,
+            data: weekendWeekdaysMonths.map(month => revenueByWeekendWeekdays[`${month}-${type}`] || 0),
+            backgroundColor: weekendWeekdaysColors[index % weekendWeekdaysColors.length]
+        };
+    });
+
+    // Data untuk chart weekend dan weekdays
+    const weekendWeekdaysChartData = {
+        labels: weekendWeekdaysMonths,
+        datasets: weekendWeekdaysData
+    };
+
+    // Membuat chart weekend dan weekdays
+    const ctxWeekendWeekdays = document.getElementById('weekenddays').getContext('2d');
+    const weekendWeekdaysChart = new Chart(ctxWeekendWeekdays, {
+        type: 'bar',
+        data: weekendWeekdaysChartData,
+        options: {
+            scales: {
+                x: {
+                    stacked: true
+                },
+                y: {
+                    stacked: true,
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+            },
+        },
+    });
+})
+.catch(error => {
+    console.error('Error:', error);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// PRODUCT CATEGORY
  // Mengelompokkan data transaksi berdasarkan kategori produk
     const salesByCategory = data.reduce((acc, transaction) => {
         const category = transaction.product_category;
@@ -272,6 +580,15 @@ var busyWeekChart = new Chart(ctxBusyWeek, {
             },
         },
     });
+
+
+
+
+
+
+
+
+    // TOP 10 PRODUCT
     // Mengelompokkan data transaksi berdasarkan rincian produk
     const salesByProductDetail = data.reduce((acc, transaction) => {
         const productDetail = transaction.product_detail;
@@ -326,284 +643,3 @@ var busyWeekChart = new Chart(ctxBusyWeek, {
 .catch(error => {
 console.error('Error:', error);
 });
-
-
-let revenueSalesData = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-    datasets: [{
-        label: 'Total Revenue',
-        backgroundColor: 'rgba(114, 92, 255, 1)',
-        borderWidth: 1,
-        data: [500, 600, 700, 800, 900, 1000]
-    }, {
-        label: 'Total Product Sold',
-        backgroundColor: 'rgba(92, 175, 252, 1)',
-        borderColor: 'rgba(255, 99, 132, 1)',
-        data: [200, 250, 300, 350, 400, 450]
-    }]
-};
-
-var ctxRevenueSales = document.getElementById('revenueSales').getContext('2d');
-var revenueSalesChart = new Chart(ctxRevenueSales, {
-    type: 'bar',
-    data: revenueSalesData,
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        },
-        plugins: {
-            legend: {
-                position: 'bottom',
-            },
-        },
-    },
-});
-
-let storeData = {
-    labels: ['Hells Kitchen', 'Lower Manhattan', 'Astoria'],
-    datasets: [{
-        label: 'Sales by Store',
-        backgroundColor: ['#EB7CA6', '#5CAFFC', '#7C5CFC'],
-        borderColor: '#fff',
-        data: [500, 500, 500]
-    }]
-};
-
-var ctxStore = document.getElementById('store').getContext('2d');
-var storeChart = new Chart(ctxStore, {
-    type: 'bar',
-    data: storeData,
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        },
-        plugins: {
-            legend: {
-                position: 'bottom',
-            },
-        },
-    },
-});
-
-let productType = {
-    labels: ['Jan', 'Feb','Mar','Apr','Mei','Jun'],
-    datasets: [{
-        label: 'Food',
-        backgroundColor: '#7C5CFC',
-        borderColor: '#fff',
-        data: [40, 40, 40, 50, 40, 40] 
-    }, {
-        label: 'Beverage',
-        backgroundColor: '#5CAFFC',
-        borderColor: '#fff',
-        data: [20, 10, 10, 5, 30, 10] 
-    }, {
-        label: 'Merchandise',
-        backgroundColor: '#EB7CA6',
-        borderColor: '#fff',
-        data: [30, 30, 30, 30, 30, 30]
-    }]
-};
-
-var ctxproductType = document.getElementById('productType').getContext('2d');
-var productTypeChart = new Chart(ctxproductType, {
-    type: 'bar',
-    data: productType,
-    options: {
-        indexAxis: 'x',
-        scales: {
-            x: {
-                stacked: true
-            },
-            y: {
-                stacked: true
-            }
-        },
-        plugins: {
-            legend: {
-                position: 'bottom',
-            },
-        },
-    },
-});
-
-// let busyHour= {
-//     labels: ['Jan', 'Feb','Mar','Apr','Mei','Jun'],
-//     datasets: [{
-//         label: 'Morning',
-//         backgroundColor: '#7C5CFC',
-//         borderColor: '#fff',
-//         data: [60, 60, 60, 60, 60, 60] 
-//     }, {
-//         label: 'Afternoon',
-//         backgroundColor: '#5CAFFC',
-//         borderColor: '#fff',
-//         data: [25, 25, 25, 25, 25, 25] 
-//     }, {
-//         label: 'Evening',
-//         backgroundColor: '#EB7CA6',
-//         borderColor: '#fff',
-//         data: [15, 15, 15, 15, 15, 15]
-//     }]
-// };
-
-// var ctxbusyHour = document.getElementById('busyHour').getContext('2d');
-// var productTypeChart = new Chart(ctxbusyHour, {
-//     type: 'bar',
-//     data: busyHour,
-//     options: {
-//         indexAxis: 'x',
-//         scales: {
-//             x: {
-//                 stacked: true
-//             },
-//             y: {
-//                 stacked: true
-//             }
-//         },
-//         plugins: {
-//             legend: {
-//                 position: 'bottom',
-//             },
-//         },
-//     },
-// });
-
-// let busyWeek = {
-//     labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-//     datasets: [{
-//         label: 'Week 1',
-//         backgroundColor: '#725CFF',
-//         data: [200, 300, 400, 500, 600, 700]
-//     }, {
-//         label: 'Week 2',
-//         backgroundColor: '#5CAFFC',
-//         data: [300, 400, 500, 600, 700, 800]
-//     },{
-//         label: 'Week 3',
-//         backgroundColor: '#EB7CA6',
-//         data: [400, 500, 600, 700, 800, 900]
-//     },{
-//         label: 'Week 4',
-//         backgroundColor: '#FF7262',
-//         data: [500, 600, 700, 800, 900, 1000]
-//     }]
-// };
-
-// var ctxBusyWeek = document.getElementById('busyWeek').getContext('2d');
-// var busyWeekChart = new Chart(ctxBusyWeek, {
-//     type: 'bar',
-//     data: busyWeek,
-//     options: {
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             }
-//         },
-//         plugins: {
-//             legend: {
-//                 position: 'bottom',
-//             },
-//         },
-//     },
-// });
-
-let weekenddays = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-    datasets: [{
-        label: 'Weekdays',
-        backgroundColor: '#725CFF',
-        data: [600, 800, 1000, 1200, 1400, 1600]
-    }, {
-        label: 'Weekend',
-        backgroundColor: '#5CAFFC',
-        data: [300, 400, 500, 600, 700, 800]
-    }]
-};
-
-var ctxweekenddays = document.getElementById('weekenddays').getContext('2d');
-var weekenddaysChart = new Chart(ctxweekenddays, {
-    type: 'bar',
-    data: weekenddays,
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        },
-        plugins: {
-            legend: {
-                position: 'bottom',
-            },
-        },
-    },
-});
-
-// let category = {
-//     labels: ['Category 1','Category 2','Category 3','Category 4','Category 5','Category 6','Category 7', 'Category 8','Category 9'],
-//     datasets: [{
-//         label: 'Sales by Category',
-//         backgroundColor: ['#725CFF'],
-//         borderColor: '#725CFF',
-//         data: [200, 100, 75,50,25,100, 75,50,25]
-//     }]
-// };
-
-// var ctxpcategory = document.getElementById('category').getContext('2d');
-// var priceRangeChart = new Chart(ctxpcategory, {
-//     type: 'bar',
-//     data: category,
-//     options: {
-//         indexAxis :'y',
-//         scales: {
-//             x: {
-//                 beginAtZero: true
-//             }
-//         },
-//         plugins: {
-//             legend: {
-//                 position: 'bottom',
-//             },
-//         },
-//     },
-// });
-
-// let topTen = {
-//     labels: ['Top 1','Top 2','Top 3','Top 4','Top 5','Top 6','Top 7', 'Top 8','Top 9','Top 10'],
-//     datasets: [{
-//         label: 'Top 10 Product',
-//         backgroundColor: ['#725CFF'],
-//         borderColor: '#725CFF',
-//         data: [200, 100, 75,50,25,100, 75,50,25, 75]
-//     }]
-// };
-
-// var ctxtop = document.getElementById('top').getContext('2d');
-// var priceRangeChart = new Chart(ctxtop, {
-//     type: 'bar',
-//     data: topTen,
-//     options: {
-//         indexAxis :'y',
-//         scales: {
-//             x: {
-//                 beginAtZero: true
-//             }
-//         },
-//         plugins: {
-//             legend: {
-//                 position: 'bottom',
-//             },
-//         },
-//     },
-// });
-
-
-
-
-
-
-
