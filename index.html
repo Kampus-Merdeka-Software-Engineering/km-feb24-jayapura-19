@@ -1,235 +1,284 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jayapura19</title>
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="./style/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Jayapura19</title>
+        <!-- Style CSS -->
+        <link rel="stylesheet" href="./style/style.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
 
-<body>
-    <!-- Sidebar -->
-    <nav class="sidebar">
-        <div class="top">
-            <div class="logo">
-                <img src="./component/ungu.svg" alt="">
-                <span>Jayapura19</span>
+    <body>
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="top">
+                <div class="logo">
+                    <img src="./component/ungu.svg" alt="">
+                    <span>Jayapura19</span>
+                </div>
+                <!-- Kode Tombol -->
+                <img src="./component/hide.svg" id="btn" class="rotate" alt="">
             </div>
-            <!-- Kode Tombol -->
-            <img src="./component/hide.svg" id="btn" class="rotate" alt="">
-        </div>
-        <div class="main-menu">
-            <p>Main Menu</p>
-        </div>
-        <ul>
-            <li>
-                <a href="./index.html">
-                    <img src="./component/dashboardIcon.svg" alt="">
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="./data.html">
-                    <img src="./component/dataIcon.svg" alt="">
-                    <span>Data</span>
-                </a>
-            </li>
-        </ul>
-        <div class="preferences">
-            <p> Preferences</p>
-        </div>
-        <ul>
-            <li>
-                <a href="#">
-                    <img src="./component/setting.svg" alt="">
-                    <span>Settings</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="./component/help.svg" alt="">
-                    <span>Help Center</span>
-                </a>
-            </li>
-            <li class="akun">
-                <a href="#">
-                    <img src="./component/profile.svg" alt="Account" class="profile">
-                    <span>Adnan Kun</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <!-- End of Sidebar -->
-
-    <!-- Header -->
-    <nav class="header">
-        <header>
-            <input type="text" class="search-bar" placeholder="Search something here...">
-            <button class="search-button">
-                <img src="./component/search.svg" alt="">
-            </button>
-        </header>
-    </nav>
-    <!-- End of Header -->
-
-
-
-    <!-- Sambutan -->
-    <div class="sambutan">
-        <div class="text">
-            <p>Welcome back</p>
-            <h1>Adnan Arsy Akbar <img src="./component/tangan.png" alt=""></h1>
-        </div>
-    </div>
-    <!-- End of Sambutan -->
-    <!-- Main content (Cart & Metrics) -->
-    <main class="main">
-        <!-- Metrics -->
-        <div class="metrics">
-            <div class="box">
-                <div class="icon">
-                    <img src="./component/revenue.svg" alt="">
-                </div>
-                <div class="text">
-                    <p>Total Revenue</p>
-                    <h5 id="totalRevenue">$0</h5>
-                </div>
+            <div class="main-menu">
+                <p>Main Menu</p>
             </div>
-            <div class="box">
-                <div class="icon">
-                    <img src="./component/product.svg" alt="">
-                </div>
-                <div class="text">
-                    <p>Total Product Sold</p>
-                    <h5 id="totalProductSold">$0</h5>
-                </div>
+            <ul>
+                <li>
+                    <a href="./index.html">
+                        <img src="./component/dashboardIcon.svg" alt="">
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./data.html">
+                        <img src="./component/dataIcon.svg" alt="">
+                        <span>Data</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="preferences">
+                <p> Preferences</p>
             </div>
-            <div class="box">
-                <div class="icon">
-                    <img src="./component/transaction.svg" alt="">
-                </div>
-                <div class="text">
-                    <p>Total Transaction</p>
-                    <h5 id="totalTransaction">$0</h5>
-                </div>
-            </div>
-            <div class="box">
-                <div class="icon">
-                    <img src="./component/store.svg" alt="">
-                </div>
-                <div class="text">
-                    <p>Total Store</p>
-                    <h5 id="totalStore">$0</h5>
-                </div>
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="./component/setting.svg" alt="">
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="./component/help.svg" alt="">
+                        <span>Help Center</span>
+                    </a>
+                </li>
+                <li class="akun">
+                    <a href="#">
+                        <img src="./component/profile.svg" alt="Account" class="profile">
+                        <span>Adnan Kun</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- End of Sidebar -->
+
+        <!-- Header -->
+        <nav class="header">
+            <header>
+                <input type="text" class="search-bar" placeholder="Search something here...">
+                <button class="search-button">
+                    <img src="./component/search.svg" alt="">
+                </button>
+            </header>
+        </nav>
+        <!-- End of Header -->
+
+
+
+        <!-- Sambutan -->
+        <div class="sambutan">
+            <div class="text">
+                <p>Welcome back</p>
+                <h1>Adnan Arsy Akbar <img src="./component/tangan.png" alt=""></h1>
             </div>
         </div>
-        <!-- End of Metrics -->
+        <!-- End of Sambutan -->
 
-
-
-        <!-- Chart -->
-        <div class="chart-container">
-            <div class="chart-column">
-                <div class="chart-data">
-                    <label for="trend">
-                        <h3>Revenue & Product Sold Trend</h3>
-                    </label>
-                    <canvas id="revenueSales" class="chartBar" width="400" height="250"></canvas>
-                </div>
+        <div class="shorter">
+            <!-- Filtering -->
+            <div class="short-1">
+                <label for="storeFilter"></label>
+                <select id="storeFilter">
+                    <option value="">All Locations</option>
+                </select>
+                <label for="monthFilter"></label>
+                <select id="monthFilter">
+                    <option value="">All Months</option>
+                </select>
+                <!-- <label for="monthFilter"></label>
+                <select id="monthFilter">
+                    <option value="">All Months</option>
+                </select>
+                <label for="monthFilter"></label>
+                <select id="monthFilter">
+                    <option value="">All Months</option>
+                </select> -->
             </div>
-            <div class="chart-column">
-                <div class="chart-data">
-                    <label for="location">
-                        <h3>Sales by Location</h3>
-                    </label>
-                    <canvas id="store" class="chartBar" width="400" height="250"></canvas>
-                </div>
-            </div>
-            <div class="chart-column">
-                <div class="chart-data">
-                    <label for="trend">
-                        <h3>Sales by Price Range</h3>
-                    </label>
-                    <canvas id="priceRange" class="chartBar" width="400" height="250"></canvas>
-                </div>
-            </div>
-            <div class="chart-column">
-                <div class="chart-data">
-                    <label for="location">
-                        <h3>Sales by Seasons</h3>
-                    </label>
-                    <canvas id="season" class="chartBar" width="400" height="250"></canvas>
-                </div>
-            </div>
-            <div class="chart-column">
-                <div class="chart-data">
-                    <label for="trend">
-                        <h3>Product Type</h3>
-                    </label>
-                    <canvas id="productType" class="chartBar" width="400" height="250"></canvas>
-                </div>
-            </div>
-            <div class="chart-column">
-                <div class="chart-data">
-                    <label for="location">
-                        <h3>Busy Hour</h3>
-                    </label>
-                    <canvas id="busyHour" class="chartBar" width="400" height="250"></canvas>
-                </div>
-            </div>
-            <div class="chart-column">
-                <div class="chart-data">
-                    <label for="trend">
-                        <h3>Busy Weeks</h3>
-                    </label>
-                    <canvas id="busyWeek" class="chartBar" width="400" height="250"></canvas>
-                </div>
-            </div>
-            <div class="chart-column">
-                <div class="chart-data">
-                    <label for="location">
-                        <h3>Weekend/Weekdays Performance</h3>
-                    </label>
-                    <canvas id="weekenddays" class="chartBar" width="400" height="250"></canvas>
-                </div>
-            </div>
-            <div class="chart-column">
-                <div class="chart-data">
-                    <label for="trend">
-                        <h3>Sales by Category</h3>
-                    </label>
-                    <canvas id="category" class="chartBar" width="400" height="250"></canvas>
-                </div>
-            </div>
-            <div class="chart-column">
-                <div class="chart-data">
-                    <label for="location">
-                        <h3>Top 10 Product</h3>
-                    </label>
-                    <canvas id="top" class="chartBar" width="400" height="250"></canvas>
-                </div>
-            </div>
+            <!-- End Filtering -->
         </div>
 
-        <!-- End Of Chart -->
-    </main>
-    <!-- End Main content (Cart & Metrics) -->
+        <!-- Main content (Cart & Metrics) -->
+        <main class="main">
+            <!-- Metrics -->
+            <div class="metrics">
+                <div class="box">
+                    <div class="icon">
+                        <img src="./component/revenue.svg" alt="">
+                    </div>
+                    <div class="text">
+                        <p>Total Revenue</p>
+                        <h5 id="totalRevenue">0</h5>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <img src="./component/product.svg" alt="">
+                    </div>
+                    <div class="text">
+                        <p>Total Product Sold</p>
+                        <h5 id="totalProductSold">0</h5>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <img src="./component/transaction.svg" alt="">
+                    </div>
+                    <div class="text">
+                        <p>Total Transaction</p>
+                        <h5 id="totalTransaction">0</h5>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <img src="./component/store.svg" alt="">
+                    </div>
+                    <div class="text">
+                        <p>Total Store</p>
+                        <h5 id="totalStore">0</h5>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Metrics -->
 
-    <footer class="footer">
-        <p>
-            © This website is managed by Team 19 Jayapura
-        </p>
-    </footer>
 
-    <!-- Script JS -->
-    <script src="./script/interaction.js"></script>
-    <script src="./script/script.js"></script>
-    <!-- Chart.JS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</body>
+            <!-- Chart -->
+            <div class="chart-container">
+                <div class="chart-column">
+                    <div class="chart-data">
+                        <label for="trend">
+                            <h3>Revenue & Product Sold Trend</h3>
+                        </label>
+                        <canvas id="revenueSales" class="chartBar" width="400" height="250"></canvas>
+                    </div iv>
+                </div>
 
-</html>
+                <!-- Sales by Location Chart -->
+                <div class="chart-column">
+                    <div class="chart-data">
+                        <label for="location">
+                            <h3>Sales by Location</h3>
+                        </label>
+                        <canvas id="store" class="chartBar" width="400" height="250"></canvas>
+                    </div>
+                </div>
+
+                <!-- Sales by Price Range Chart -->
+                <div class="chart-column">
+                    <div class="chart-data">
+                        <label for="trend">
+                            <h3>Sales by Price Range</h3>
+                        </label>
+                        <canvas id="priceRange" class="chartBar" width="400" height="250"></canvas>
+                    </div>
+                </div>
+
+
+                <div class="chart-column">
+                    <div class="chart-data">
+                        <label for="location">
+                            <h3>Sales by Seasons</h3>
+                        </label>
+                        <canvas id="season" class="chartBar" width="400" height="250"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-column">
+                    <div class="chart-data">
+                        <label for="trend">
+                            <h3>Product Type</h3>
+                        </label>
+                        <canvas id="productType" class="chartBar" width="400" height="250"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-column">
+                    <div class="chart-data">
+                        <label for="location">
+                            <h3>Busy Hour</h3>
+                        </label>
+                        <canvas id="busyHour" class="chartBar" width="400" height="250"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-column">
+                    <div class="chart-data">
+                        <label for="trend">
+                            <h3>Busy Weeks</h3>
+                        </label>
+                        <canvas id="busyWeek" class="chartBar" width="400" height="250"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-column">
+                    <div class="chart-data">
+                        <label for="location">
+                            <h3>Weekend/Weekdays Performance</h3>
+                        </label>
+                        <canvas id="weekenddays" class="chartBar" width="400" height="250"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-column">
+                    <div class="chart-data">
+                        <label for="trend">
+                            <h3>Sales by Category</h3>
+                        </label>
+                        <canvas id="category" class="chartBar" width="400" height="250"></canvas>
+                    </div>
+                </div>
+
+                <!-- <div class="chart-column">
+                    <div class="chart-data">
+                        <label for="location">
+                            <h3>Top 10 Product</h3>
+                        </label>
+                        <canvas id="top" class="chartBar" width="400" height="250"></canvas>
+                    </div>
+                </div> -->
+
+            </div>
+
+            <!-- End Of Chart -->
+        </main>
+        <!-- End Main content (Cart & Metrics) -->
+
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="./index.html"><img src="./component/dashboardIcon.svg" alt="Dashboard"></a></li>
+                <li><a href="./data.html"><img src="./component/dataIcon.svg" alt="Data"></a></li>
+                <li><a href="#"><img src="./component/setting.svg" alt="Settings"></a></li>
+                <li><a href="#"><img src="./component/help.svg" alt="Help Center"></a></li>
+                <li><a href="#"><img src="./component/profile.svg" alt="Adnan Kun"></a></li>
+            </ul>
+        </nav>
+        <!-- End Mobile Navigation -->
+
+
+        <footer class="footer">
+            <p>
+                © This website is managed by Team 19 Jayapura
+            </p>
+        </footer>
+
+        <!-- Script JS -->
+        <script src="./script/interaction.js"></script>
+        <script src="./script/script.js"></script>
+        <!-- Chart.JS -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </body>
+
+    </html>
