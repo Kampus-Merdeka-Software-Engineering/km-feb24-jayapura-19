@@ -10,7 +10,7 @@
 }
 
 body {
-    background-color: #F6F7F9;
+    background-color: #252627;
 }
 
 /* End of Global Style */
@@ -24,10 +24,10 @@ body {
     left: 0;
     height: 100vh;
     width: 80px;
-    background-color: white;
+    background-color: #18191B;
+    border: 1.5px solid #252627;
     padding: 40px 24px;
     transition: width 0.3s ease;
-    border: 1.5px solid #F3F5F7;
 }
 
 
@@ -168,34 +168,16 @@ body {
 /* Header */
 .header {
     display: flex;
-    justify-content: center;
     align-items: center;
     padding: 0 20px;
     height: 80px;
-    background-color: white;
     transition: all 0.3s ease;
-    border: 2px solid #F3F5F7;
     margin-left: 60px;
 }
 
-.header .search-bar{
-    height: 40px;
-    width: 500px;
-    padding-left: 24px;
-    border: 1.5px solid #C3D4E9;
-    border-radius: 10px;
-}
-
-.header .search-button {
-    background-color: #7C5CFC;
-    border: none;
-    height: 40px;
-    width: 40px;
-    border-radius: 10px;
-}
-
-.header .search-bar, .search-button{
-    margin: 8px;
+.header h1{
+    margin: 32px 0px 0px 48px;
+    color: white;
 }
 
 .sidebar.active ~ .header{
@@ -213,7 +195,7 @@ body {
 .shorter {
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: #18191B;
     margin-left: 130px;
     margin-top: 40px;
     width: 1088px;
@@ -255,16 +237,16 @@ body {
 
 .main{
     display: block;
-    transition: all 0.3s ease;
-    border: 2px solid #F3F5F7;
 }
 
 .data{
-    background-color: white;
+    background-color: #18191B;
+    color: white;
     height: 500px;
     width: 1100px;
     overflow-x: auto;
     margin: 40px 0px 40px 130px;
+    border-radius: 16px;
 }
 
 .row th{
@@ -309,7 +291,7 @@ tbody td{
 
 .pagination button {
     padding: 8px 16px;
-    background-color: #7C5CFC;
+    background-color: #F4A100;
     color: white;
     border: none;
     border-radius: 4px;
@@ -319,12 +301,13 @@ tbody td{
 }
 
 .pagination button:hover {
-    background-color: #5635db;
+    background-color: #d58f04;
 }
 
 .pagination span {
     margin: 0px 10px;
     font-weight: bold;
+    color: white;
 }
 
 
@@ -342,13 +325,11 @@ tbody td{
     align-items: center;
     padding: 0 20px;
     height: 80px;
-    background-color: white;
+    background-color: #18191B;
     transition: all 0.3s ease;
-    border: 2px solid #F3F5F7;
     margin-left: 60px;
     font-weight: 600;
     color: #596780;
-    border: 1.5px solid #F3F5F7;
 }
 
 .sidebar.active ~ .footer{

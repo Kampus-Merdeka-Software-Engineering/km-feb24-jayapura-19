@@ -61,13 +61,13 @@ function updateChart(filteredData) {
         datasets: [{
             label: 'Revenue',
             data: revenueData,
-            backgroundColor: '#725CFF',
+            backgroundColor: '#F4A100',
             borderColor: '#fff',
             yAxisID: 'y',
         }, {
             label: 'Product Sold',
             data: productSoldData,
-            backgroundColor: '#5CAFFC',
+            backgroundColor: '#FA643F',
             borderColor: '#fff',
             yAxisID: 'y1',
         }]
@@ -116,7 +116,7 @@ function updateStoreChart(filteredData) {
         datasets: [{
             label: 'Revenue',
             data: revenueData,
-            backgroundColor: '#725CFF',
+            backgroundColor: ['#EFC136','#F4A100', '#FA643F'],
             borderColor: '#fff',
         }]
     };
@@ -153,7 +153,7 @@ function createPriceRangeChart(filteredData) {
         datasets: [{
             label: 'Revenue',
             data: revenueData,
-            backgroundColor: '#725CFF',
+            backgroundColor: '#F4A100',
             borderColor: '#fff',
         }]
     };
@@ -191,7 +191,7 @@ function createSeasonChart(filteredData) {
         datasets: [{
             label: 'Revenue',
             data: revenueData,
-            backgroundColor: '#725CFF',
+            backgroundColor: ['#EFC136','#F4A100', '#FA643F'],
             borderColor: '#fff',
         }]
     };
@@ -229,7 +229,7 @@ function createProductTypeChart(filteredData) {
         datasets: [{
             label: 'Revenue',
             data: revenueData,
-            backgroundColor: '#725CFF',
+            backgroundColor: ['#EFC136','#F4A100', '#FA643F'],
                 borderColor: '#fff',
         }]
     };
@@ -266,7 +266,7 @@ function createBusyHourChart(filteredData) {
         datasets: [{
             label: 'Revenue',
             data: revenueData,
-            backgroundColor: '#725CFF',
+            backgroundColor: ['#EFC136','#F4A100', '#FA643F'],
             borderColor: '#fff',
         }]
     };
@@ -303,7 +303,7 @@ function createBusyWeekChart(filteredData) {
         datasets: [{
             label: 'Revenue',
             data: revenueData,
-            backgroundColor: '#725CFF',
+            backgroundColor: ['#FADB7A','#EFC136','#F4A100', '#FA643F'],
             borderColor: '#fff',
         }]
     };
@@ -340,7 +340,7 @@ function createWeekenddaysChart(filteredData) {
         datasets: [{
             label: 'Revenue',
             data: revenueData,
-            backgroundColor: '#725CFF',
+            backgroundColor: ['#F4A100', '#FA643F'],
             borderColor: '#fff',
         }]
     };
@@ -377,7 +377,7 @@ function createCategoryChart(filteredData) {
         datasets: [{
             label: 'Revenue',
             data: revenueData,
-            backgroundColor: '#725CFF',
+            backgroundColor: '#F4A100',
                 borderColor: '#fff',
         }]
     };
@@ -424,7 +424,7 @@ function createTopChart(filteredData) {
         datasets: [{
             label: 'Revenue',
             data: revenueData,
-            backgroundColor: '#725CFF',
+            backgroundColor: '#F4A100',
             borderColor: '#fff',
         }]
     };
