@@ -131,7 +131,7 @@ function filterData() {
 }
 
 // Fetch data dari file JSON dan inisialisasi halaman
-fetch('./script/dataKopi.json')
+fetch('./script/finalDataCoffee.json')
     .then(response => response.json())
     .then(fetchedData => {
         data = sortData(fetchedData); // Mengurutkan data

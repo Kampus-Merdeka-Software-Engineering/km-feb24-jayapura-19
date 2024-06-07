@@ -267,6 +267,49 @@ body {
     margin-left: 20px;
 }
 
+
+
+.shorter {
+    display: flex;
+    flex-direction: column;
+    background-color: none;
+    margin-left:28px;
+    margin-top: 40px;
+    /* width: 1088px; */
+    /* height: 140px; */
+    justify-content: center;
+    padding-left: 30px;
+    border-radius: 12px;
+}
+
+.shorter label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.shorter select {
+    width: 160px;
+    padding: 16px 24px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px 0px 10px 48px;
+    -webkit-appearance: none; /* Safari dan Chrome */
+}
+
+.sidebar.active ~ .shorter{
+    margin-left: 250px;
+    width: 900px;
+}
+
+.sidebar.active ~ .shorter select{
+    width: 160px;
+    margin: 10px 36px 10px 0px;
+}
+
+/* End Shorter */
+
+
 /* Metrics */
 .metrics {
     display: grid;
@@ -327,7 +370,9 @@ body {
     width: 470px;
 }
 
-
+.mobile-nav {
+    display: none;
+}
 
 /* End Chart */
 
@@ -346,6 +391,7 @@ body {
     transition: all 0.3s ease;
     border: 2px solid #F3F5F7;
     margin-left: 60px;
+    margin-top: 40px;
     font-weight: 600;
     color: #596780;
     border: 1.5px solid #F3F5F7;
@@ -357,3 +403,103 @@ body {
 }
 
 /* Footer */
+
+
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .header {
+        margin: 0px;
+    }
+
+    .header .search-bar {
+        width: 300px;
+    }
+
+    .sambutan {
+        margin-left: 0px;
+    }
+
+    .sambutan p {
+        font-size: 14px;
+    }
+
+    .sambutan h1 {
+        font-size: 28px;
+    }
+
+    .main {
+        margin: 0;
+        width: 100%;
+    }
+
+    .metrics {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin:40px 0px;
+        padding: 24px;
+    }
+
+    .chart-container {
+        grid-template-columns: 1fr;
+        margin: 10px;
+        padding: 10px;
+        margin-bottom: 100px;
+    }
+
+    .chart-data {
+        width: 100%;
+    }
+
+    
+    .mobile-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+        height: 60px;
+        display: block;
+    }
+    
+    .mobile-nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: px;
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    .mobile-nav li {
+        text-align: center;
+    }
+    
+    .mobile-nav a {
+        display: block;
+        text-decoration: none;
+        color: #000000;
+        padding: 8px 0;
+        font-size: 14px; 
+    }
+    
+    .mobile-nav a img {
+        display: block;
+        margin: 0 auto 3px; 
+        width: 28px; 
+        height: 28px; 
+    }
+    
+
+    .footer{
+        display: none;
+    }
+}
+
+/* End of Mobile */
+    
