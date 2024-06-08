@@ -22,7 +22,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
+    height: 100%;
     width: 80px;
     background-color: #18191B;
     border: 1.5px solid #252627;
@@ -343,7 +343,6 @@ tbody td{
 /* Mobile */
 @media (max-width: 768px) {
 
-
     .sidebar {
         display: none;
     }
@@ -361,6 +360,12 @@ tbody td{
         width: 100%;
     }
 
+    .header h1{
+        margin: 16px 0px 0px 0px;
+        color: white;
+    }
+    
+
     .data {
         margin: 24px;
         width: 90%;
@@ -371,7 +376,7 @@ tbody td{
         bottom: 0;
         left: 0;
         width: 100%;
-        background-color: #ffffff;
+        background-color: #18191B;
         box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
         height: 60px;
         display: block;
@@ -402,7 +407,7 @@ tbody td{
         height: 240px;
         flex-wrap: wrap;
         justify-content: space-between;
-        background-color: white;
+        background-color: #18191B;
         margin: 20px;
         width: calc(100% - 40px);
         padding: 20px;
