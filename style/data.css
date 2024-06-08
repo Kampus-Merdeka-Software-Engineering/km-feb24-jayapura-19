@@ -341,7 +341,7 @@ tbody td{
 
 
 /* Mobile */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
 
     .sidebar {
         display: none;
@@ -385,7 +385,7 @@ tbody td{
     .mobile-nav ul {
         list-style-type: none;
         padding: 0;
-        margin: 0;
+        margin: 6px 0px 0px 0px;
         display: flex;
         justify-content: space-around;
     }
