@@ -251,12 +251,6 @@ body {
   background: #cb8802;
 }
 
-@media (max-width: 360px) {
-  .name-fieldset {
-    flex-direction: column;
-  }
-}
-
 /* End Of Main Content */
 
 
@@ -286,7 +280,7 @@ body {
 /* MObile */
 
 /* Mobile */
-@media (max-width: 400px) {
+@media (max-width: 768px) {
 
   .sidebar {
       display: none;

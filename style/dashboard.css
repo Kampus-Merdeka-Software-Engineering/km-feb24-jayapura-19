@@ -22,7 +22,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100%;
+    height: 100vh;
     width: 80px;
     background-color: #18191B;
     border: 1.5px solid #252627;
@@ -176,7 +176,7 @@ body {
 }
 
 .header h1{
-    margin: 32px 0px 0px 48px;
+    margin: 32px 0px 0px 24px;
     color: white;
 }
 
@@ -190,132 +190,134 @@ body {
 }
 /* End of Header */
 
+/* Main Ocntent */
+
+.main{
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.sidebar.active ~ .main{
+    margin-left: 240px;
+    width: calc(100% - 240px);
+}
+
+.sidebar.sidebar.active ~ .main .metrics{
+    margin-left: 20px;
+}
+
 
 
 .shorter {
     display: flex;
-    flex-direction: column;
-    background-color: #18191B;
-    margin-left: 130px;
+    background-color: none;
+    margin-left:28px;
     margin-top: 40px;
-    width: 1088px;
-    height: 140px;
-    justify-content: center;
     padding-left: 30px;
     border-radius: 12px;
 }
 
-.shorter label {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
 .shorter select {
     width: 160px;
-    padding: 5px;
+    padding: 16px 24px;
     font-size: 14px;
-    border: 1px solid #ccc;
     border-radius: 4px;
-    margin: 10px 48px 10px 48px;
+    margin: 10px 0px 10px 48px;
+    -webkit-appearance: none;
+    color: white;
+    background-color: #F4A100;
 }
 
 .sidebar.active ~ .shorter{
-    margin-left: 310px;
+    margin-left: 250px;
     width: 900px;
 }
 
 .sidebar.active ~ .shorter select{
-    width: 130px;
-    margin: 10px 36px 10px 36px;
+    width: 160px;
+    margin: 10px 36px 10px 0px;
 }
 
 /* End Shorter */
 
 
-
-/* Main Ocntent */
-
-.main{
-    display: block;
+/* Metrics */
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px; 
+    margin: 20px 0px 0px 80px;
+    padding: 20px; 
+    transition: all 0.3s ease;
 }
 
-.data{
-    background-color: #18191B;
-    color: white;
-    height: 500px;
-    width: 1100px;
-    overflow-x: auto;
-    margin: 40px 0px 40px 130px;
-    border-radius: 16px;
-}
-
-.row th{
-   padding: 20px 24px;   
-}
-
-tbody td{
-    width: 40px;
-    padding: 0px 20px 0px 20px;
-    font-size: 13px;
-    text-align: center;
-    line-height: 24px;
-}
-
-.sidebar.active ~ .main{
-    margin-left: 180px;
-    width: calc(100%-190px);
-}
-
-.sidebar.active ~ .main .data{
-    width: 900px;
-}
-
-
-
-
-
-/* End of Main Content */
-
-
-/* Pagination */
-
-/* Tambahkan gaya untuk pagination */
-.pagination {
-    margin-top: 20px;
-    margin-bottom: 40px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.pagination button {
-    padding: 8px 16px;
-    background-color: #F4A100;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    
-}
-
-.pagination button:hover {
-    background-color: #d58f04;
-}
-
-.pagination span {
-    margin: 0px 10px;
-    font-weight: bold;
-    color: white;
-}
-
-
-.mobile-nav{
+.metrics h2{
     display: none;
 }
 
-/* End of Pagination */
+.metrics .box {
+    display: flex;
+    background-color: #18191B; 
+    padding: 20px; 
+    border-radius: 10px;
+}
+
+.metrics .box .text{
+    margin: 4px 0px 0px 20px;
+
+}
+
+.metrics .box .text p{
+    font-size: 12px;
+    color: #6B7280;
+    margin-bottom: 6px;
+}
+
+.metrics .box .text h5{
+    font-size: 20px;
+    color: white;
+}
+/* End of Metrics */
+
+
+/* Chart */
+.chart-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 24px;
+    padding: 20px;
+    margin: 10px 0px 0px 80px; /* Menyesuaikan margin */
+    transition: all 0.3s ease; /* Menambahkan transisi */
+}
+
+.chart-container h2{
+    display: none;
+}
+
+.chart-data {
+    background-color: #18191B;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.sidebar.active ~ .main .chart-container{
+    margin-left: 20px;
+}
+.sidebar.active ~ .main .chart-data{
+    width: 470px;
+}
+
+.mobile-nav {
+    display: none;
+}
+
+/* End Chart */
+
+/* End Of Main Content */
+
 
 /* Footer */
 
@@ -328,6 +330,7 @@ tbody td{
     background-color: #18191B;
     transition: all 0.3s ease;
     margin-left: 60px;
+    margin-top: 40px;
     font-weight: 600;
     color: #596780;
 }
@@ -340,35 +343,90 @@ tbody td{
 /* Footer */
 
 
+
 /* Mobile */
 @media (max-width: 768px) {
+
+    body {
+        margin: 0px;
+        /* overflow-x: hidden; */
+        padding: 10px;
+    }
 
     .sidebar {
         display: none;
     }
 
     .header {
-        margin: 0px;
-    }
-
-    .header .search-bar {
-        width: 300px;
-    }
-
-    .main {
-        margin: 0;
+        margin-left: -8%;
         width: 100%;
+        box-sizing: border-box;
     }
 
-    .header h1{
-        margin: 16px 0px 0px 0px;
+    .shorter {
+        /* display: block; */
+        margin: 16px 0px 0px -5%;
+        border-radius: 12px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .shorter select {
+        margin-left: 0px;
+        width: calc(100% - 20px);
+        box-sizing: border-box;
+    }
+
+    .metrics {
+        margin-left: 10px;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+        box-sizing: border-box;
+    }
+
+    .metrics h2{
         color: white;
+        margin: 32px 0px 6px 0px;
+        display: block;
     }
-    
 
-    .data {
-        margin: 24px;
-        width: 90%;
+    .metrics .box {
+        width: 100%;
+        margin-top: 0px;
+        box-sizing: border-box;
+    }
+
+    .chart-container {
+        display: flex;
+        flex-direction: column;
+        margin: 0px 0px 48px 0px;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .chart-container h2{
+        color: white;
+        margin: 48px 0px 6px 0px;
+        display: block;
+    }
+
+    .chart-column {
+        width: 100%;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+    }
+
+    .chart-data {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .chartBar {
+        width: 100% !important;
+        height: auto !important;
     }
 
     .mobile-nav {
@@ -388,6 +446,8 @@ tbody td{
         margin: 6px 0px 0px 0px;
         display: flex;
         justify-content: space-around;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .mobile-nav li {
@@ -397,48 +457,19 @@ tbody td{
     .mobile-nav a {
         display: block;
         text-decoration: none;
-        color: #000000;
+        color: #FFFFFF;
         padding: 8px 0;
         font-size: 14px;
     }
 
-    .shorter {
-        display: flex;
-        height: 240px;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        background-color: #18191B;
-        margin: 20px;
-        width: calc(100% - 40px);
-        padding: 20px;
-        border-radius: 12px;
-        box-sizing: border-box;
-    }
-
-    .shorter select {
-        margin: 4px;
-    }
-
-    .short-1, .short-2 {
-        display: flex;
-        flex-direction: column;
-        width: 48%;
-    }
-
-    .short-1 select, .short-2 select {
-        width: 100%;
-        padding: 5px;
-        font-size: 14px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        margin-bottom: 10px;
+    .mobile-nav a img {
+        display: block;
+        margin: 0 auto 3px;
+        width: 28px;
+        height: 28px;
     }
 
     .footer {
         display: none;
-    }
-
-    .pagination {
-        margin-bottom: 100px;
     }
 }
