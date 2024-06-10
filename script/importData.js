@@ -1,6 +1,7 @@
 const rowsPerPage = 1000; // Jumlah baris per halaman
 let currentPage = 1;
 let data = [];
+let filteredData = [];
 
 // Fungsi untuk mengurutkan data berdasarkan transaction_id
 function sortData(data) {
@@ -39,14 +40,18 @@ function displayTable(data, page) {
 }
 
 // Fungsi untuk memperbarui navigasi pagination
-function updatePagination(totalPages) {
+function updatePagination(totalPages, filteredData) {
     const pageNumberElement = document.getElementById('page-number');
     pageNumberElement.textContent = `${currentPage} / ${totalPages}`;
 
     const prevButton = document.getElementById('prev');
     const nextButton = document.getElementById('next');
 
-    prevButton.addEventListener('click', () => {
+    // Remove existing event listeners to avoid multiple event handlers
+    prevButton.replaceWith(prevButton.cloneNode(true));
+    nextButton.replaceWith(nextButton.cloneNode(true));
+
+    document.getElementById('prev').addEventListener('click', () => {
         if (currentPage > 1) {
             currentPage--;
             displayTable(filteredData, currentPage);
@@ -54,7 +59,7 @@ function updatePagination(totalPages) {
         }
     });
 
-    nextButton.addEventListener('click', () => {
+    document.getElementById('next').addEventListener('click', () => {
         if (currentPage < totalPages) {
             currentPage++;
             displayTable(filteredData, currentPage);
@@ -83,7 +88,6 @@ function updateDropdownOptions(data) {
     updateDropdown('timeFilter', timeOptions, 'All Times');
 }
 
-
 function updateDropdown(selectId, options, allText) {
     const selectElement = document.getElementById(selectId);
     selectElement.innerHTML = ''; // Kosongkan dropdown sebelum memasukkan opsi baru
@@ -101,7 +105,6 @@ function updateDropdown(selectId, options, allText) {
         selectElement.appendChild(optionElement);
     });
 }
-
 
 // Fungsi untuk memfilter data berdasarkan kriteria yang dipilih
 function filterData() {
@@ -127,7 +130,7 @@ function filterData() {
 
     currentPage = 1; // Reset halaman ke halaman pertama setelah filtering
     displayTable(filteredData, currentPage); // Tampilkan tabel dengan data yang difilter
-    updatePagination(Math.ceil(filteredData.length / rowsPerPage)); // Perbarui navigasi pagination berdasarkan data yang difilter
+    updatePagination(Math.ceil(filteredData.length / rowsPerPage), filteredData); // Perbarui navigasi pagination berdasarkan data yang difilter
 }
 
 // Fetch data dari file JSON dan inisialisasi halaman
@@ -139,7 +142,7 @@ fetch('./script/finalDataCoffee.json')
         displayTable(filteredData, currentPage);
 
         const totalPages = Math.ceil(filteredData.length / rowsPerPage);
-        updatePagination(totalPages);
+        updatePagination(totalPages, filteredData);
 
         // Update filter options
         updateDropdownOptions(data);

@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jayapura19</title>
+    <title>Data Overview</title>
+    <link rel="icon" href="./component/tabIcon.svg" type="image/x-icon">
     <!-- Style CSS -->
     <link rel="stylesheet" href="./style/data.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -16,8 +17,10 @@
     <nav class="sidebar">
         <div class="top">
             <div class="logo">
-                <img src="./component/ungu.svg" alt="">
-                <span>Jayapura19</span>
+                <a href="./index.html">
+                    <img src="./component/ungu.svg" alt="">
+                    <span>Jayapura19</span>
+                </a>
             </div>
             <!-- Kode Tombol -->
             <img src="./component/hide.svg" id="btn" class="rotate" alt="">
@@ -147,18 +150,20 @@
 
     <nav class="mobile-nav">
         <ul>
+            <li><a href="./index.html"><img src="./component/logoMenu.svg" alt="Dashboard"></a></li>
             <li><a href="./dashboard.html"><img src="./component/dashboardIcon.svg" alt="Dashboard"></a></li>
             <li><a href="./data.html"><img src="./component/dataIcon.svg" alt="Data"></a></li>
             <li><a href="./helpcenter.html"><img src="./component/help.svg" alt="Help Center"></a></li>
         </ul>
     </nav>
 
-
-    <footer class="footer">
-        <p>
-            © This website is managed by Team 19 Jayapura
-        </p>
-    </footer>
+    <div class="footer-container">
+        <footer class="footer">
+            <p>
+                © This website is managed by Team 19 Jayapura
+            </p>
+        </footer>
+    </div>
 
     <!-- Script JS -->
     <script src="./script/importData.js"></script>
