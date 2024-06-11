@@ -28,7 +28,7 @@ function updateMetrics(filteredData) {
     const totalTransaction = filteredData.length;
     const totalStore = new Set(filteredData.map(item => item.store_location)).size;
 
-    document.getElementById('totalRevenue').textContent = `$${totalRevenue.toFixed(2)}`;
+    document.getElementById('totalRevenue').textContent = `$${totalRevenue.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
     document.getElementById('totalProductSold').textContent = totalProductSold.toLocaleString();
     document.getElementById('totalTransaction').textContent = totalTransaction.toLocaleString();
     document.getElementById('totalStore').textContent = totalStore.toLocaleString();
