@@ -4,11 +4,11 @@ let storeSalesChart = null;
 let priceRangeChart = null;
 let seasonChart = null;
 let productTypeChart = null;
-let busyHourChart = null; 
-let busyWeekChart = null; 
-let weekenddaysChart = null; 
-let categoryChart = null; 
-let topChart = null; 
+let busyHourChart = null;
+let busyWeekChart = null;
+let weekenddaysChart = null;
+let categoryChart = null;
+let topChart = null;
 
 function filterData() {
     const storeFilter = document.getElementById('storeFilter').value;
@@ -38,8 +38,8 @@ function updateMetrics(filteredData) {
     createPriceRangeChart(filteredData);
     createSeasonChart(filteredData);
     createProductTypeChart(filteredData);
-    createBusyHourChart(filteredData); 
-    createBusyWeekChart(filteredData); 
+    createBusyHourChart(filteredData);
+    createBusyWeekChart(filteredData);
     createWeekenddaysChart(filteredData);
     createCategoryChart(filteredData);
     createTopChart(filteredData);
@@ -116,7 +116,7 @@ function updateStoreChart(filteredData) {
         datasets: [{
             label: 'Revenue',
             data: revenueData,
-            backgroundColor: ['#EFC136','#F4A100', '#FA643F'],
+            backgroundColor: ['#EFC136', '#F4A100', '#FA643F'],
             borderColor: '#fff',
         }]
     };
@@ -168,7 +168,7 @@ function createPriceRangeChart(filteredData) {
             data: data,
             options: {
                 responsive: true,
-                indexAxis : 'y',
+                indexAxis: 'y',
                 scales: {
                     y: {
                         beginAtZero: true,
@@ -191,7 +191,7 @@ function createSeasonChart(filteredData) {
         datasets: [{
             label: 'Revenue',
             data: revenueData,
-            backgroundColor: ['#EFC136','#F4A100', '#FA643F'],
+            backgroundColor: ['#EFC136', '#F4A100', '#FA643F'],
             borderColor: '#fff',
         }]
     };
@@ -206,7 +206,7 @@ function createSeasonChart(filteredData) {
             data: data,
             options: {
                 responsive: true,
-                indexAxis : 'y',
+                indexAxis: 'y',
                 scales: {
                     y: {
                         beginAtZero: true,
@@ -220,7 +220,7 @@ function createSeasonChart(filteredData) {
 function createProductTypeChart(filteredData) {
     const labels = [...new Set(filteredData.map(item => item.food_baverages))];
     const revenueData = labels.map(label => {
-        const items = filteredData.filter(item => item    .food_baverages === label);
+        const items = filteredData.filter(item => item.food_baverages === label);
         return items.reduce((acc, cur) => acc + parseFloat(cur.Revenue), 0);
     });
 
@@ -229,8 +229,8 @@ function createProductTypeChart(filteredData) {
         datasets: [{
             label: 'Revenue',
             data: revenueData,
-            backgroundColor: ['#EFC136','#F4A100', '#FA643F'],
-                borderColor: '#fff',
+            backgroundColor: ['#EFC136', '#F4A100', '#FA643F'],
+            borderColor: '#fff',
         }]
     };
 
@@ -266,7 +266,7 @@ function createBusyHourChart(filteredData) {
         datasets: [{
             label: 'Revenue',
             data: revenueData,
-            backgroundColor: ['#EFC136','#F4A100', '#FA643F'],
+            backgroundColor: ['#EFC136', '#F4A100', '#FA643F'],
             borderColor: '#fff',
         }]
     };
@@ -303,7 +303,7 @@ function createBusyWeekChart(filteredData) {
         datasets: [{
             label: 'Revenue',
             data: revenueData,
-            backgroundColor: ['#FADB7A','#EFC136','#F4A100', '#FA643F'],
+            backgroundColor: ['#FADB7A', '#EFC136', '#F4A100', '#FA643F'],
             borderColor: '#fff',
         }]
     };
@@ -378,7 +378,7 @@ function createCategoryChart(filteredData) {
             label: 'Revenue',
             data: revenueData,
             backgroundColor: '#F4A100',
-                borderColor: '#fff',
+            borderColor: '#fff',
         }]
     };
 
@@ -392,7 +392,7 @@ function createCategoryChart(filteredData) {
             data: data,
             options: {
                 responsive: true,
-                indexAxis : 'y',
+                indexAxis: 'y',
                 scales: {
                     y: {
                         beginAtZero: true,
@@ -439,7 +439,7 @@ function createTopChart(filteredData) {
             data: data,
             options: {
                 responsive: true,
-                indexAxis : 'y',
+                indexAxis: 'y',
                 scales: {
                     y: {
                         beginAtZero: true,
@@ -450,99 +450,104 @@ function createTopChart(filteredData) {
     }
 }
 
-function updateProductTypeChart(filteredData) {
-    const labels = [...new Set(filteredData.map(item => item.food_baverages))];
-    const revenueData = labels.map(label => {
-        const items = filteredData.filter(item => item.food_baverages === label);
-        return items.reduce((acc, cur) => acc + parseFloat(cur.Revenue), 0);
-    });
+// function updateProductTypeChart(filteredData) {
+//     const labels = [...new Set(filteredData.map(item => item.food_baverages))];
+//     const revenueData = labels.map(label => {
+//         const items = filteredData.filter(item => item.food_baverages === label);
+//         return items.reduce((acc, cur) => acc + parseFloat(cur.Revenue), 0);
+//     });
 
-    productTypeChart.data.labels = labels;
-    productTypeChart.data.datasets[0].data = revenueData;
-    productTypeChart.update();
-}
+//     productTypeChart.data.labels = labels;
+//     productTypeChart.data.datasets[0].data = revenueData;
+//     productTypeChart.update();
+// }
 
-function updateBusyHourChart(filteredData) {
-    const labels = [...new Set(filteredData.map(item => item.Time))];
-    const revenueData = labels.map(label => {
-        const items = filteredData.filter(item => item.Time === label);
-        return items.reduce((acc, cur) => acc + parseFloat(cur.Revenue), 0);
-    });
+// function updateBusyHourChart(filteredData) {
+//     const labels = [...new Set(filteredData.map(item => item.Time))];
+//     const revenueData = labels.map(label => {
+//         const items = filteredData.filter(item => item.Time === label);
+//         return items.reduce((acc, cur) => acc + parseFloat(cur.Revenue), 0);
+//     });
 
-    busyHourChart.data.labels = labels;
-    busyHourChart.data.datasets[0].data = revenueData;
-    busyHourChart.update();
-}
+//     busyHourChart.data.labels = labels;
+//     busyHourChart.data.datasets[0].data = revenueData;
+//     busyHourChart.update();
+// }
 
-function updateBusyWeekChart(filteredData) {
-    const labels = [...new Set(filteredData.map(item => item.Week))];
-    const revenueData = labels.map(label => {
-        const items = filteredData.filter(item => item.Week === label);
-        return items.reduce((acc, cur) => acc + parseFloat(cur.Revenue), 0);
-    });
+// function updateBusyWeekChart(filteredData) {
+//     const labels = [...new Set(filteredData.map(item => item.Week))];
+//     const revenueData = labels.map(label => {
+//         const items = filteredData.filter(item => item.Week === label);
+//         return items.reduce((acc, cur) => acc + parseFloat(cur.Revenue), 0);
+//     });
 
-    busyWeekChart.data.labels = labels;
-    busyWeekChart.data.datasets[0].data = revenueData;
-    busyWeekChart.update();
-}
+//     busyWeekChart.data.labels = labels;
+//     busyWeekChart.data.datasets[0].data = revenueData;
+//     busyWeekChart.update();
+// }
 
-function updateWeekenddaysChart(filteredData) {
-    const labels = [...new Set(filteredData.map(item => item.Week))];
-    const revenueData = labels.map(label => {
-        const items = filteredData.filter(item => item.Week === label);
-        return items.reduce((acc, cur) => acc + parseFloat(cur.Revenue), 0);
-    });
+// function updateWeekenddaysChart(filteredData) {
+//     const labels = [...new Set(filteredData.map(item => item.Week))];
+//     const revenueData = labels.map(label => {
+//         const items = filteredData.filter(item => item.Week === label);
+//         return items.reduce((acc, cur) => acc + parseFloat(cur.Revenue), 0);
+//     });
 
-    weekenddaysChart.data.labels = labels;
-    weekenddaysChart.data.datasets[0].data = revenueData;
-    weekenddaysChart.update();
-}
+//     weekenddaysChart.data.labels = labels;
+//     weekenddaysChart.data.datasets[0].data = revenueData;
+//     weekenddaysChart.update();
+// }
 
-function updateCategoryChart(filteredData) {
-    const labels = [...new Set(filteredData.map(item => item.product_category))];
-    const revenueData = labels.map(label => {
-        const items = filteredData.filter(item => item.product_category === label);
-        return items.reduce((acc, cur) => acc + parseFloat(cur.Revenue), 0);
-    });
+// function updateCategoryChart(filteredData) {
+//     const labels = [...new Set(filteredData.map(item => item.product_category))];
+//     const revenueData = labels.map(label => {
+//         const items = filteredData.filter(item => item.product_category === label);
+//         return items.reduce((acc, cur) => acc + parseFloat(cur.Revenue), 0);
+//     });
 
-    categoryChart.data.labels = labels;
-    categoryChart.data.datasets[0].data = revenueData;
-    categoryChart.update();
-}
+//     categoryChart.data.labels = labels;
+//     categoryChart.data.datasets[0].data = revenueData;
+//     categoryChart.update();
+// }
 
-function updateTopChart(filteredData) {
-    const productRevenues = filteredData.reduce((acc, cur) => {
-        if (!acc[cur.product_detail]) {
-            acc[cur.product_detail] = 0;
-        }
-        acc[cur.product_detail] += parseFloat(cur.Revenue);
-        return acc;
-    }, {});
+// function updateTopChart(filteredData) {
+//     const productRevenues = filteredData.reduce((acc, cur) => {
+//         if (!acc[cur.product_detail]) {
+//             acc[cur.product_detail] = 0;
+//         }
+//         acc[cur.product_detail] += parseFloat(cur.Revenue);
+//         return acc;
+//     }, {});
 
-    const topProducts = Object.entries(productRevenues)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 10);
+//     const topProducts = Object.entries(productRevenues)
+//         .sort((a, b) => b[1] - a[1])
+//         .slice(0, 10);
 
-    const labels = topProducts.map(item => item[0]);
-    const revenueData = topProducts.map(item => item[1]);
+//     const labels = topProducts.map(item => item[0]);
+//     const revenueData = topProducts.map(item => item[1]);
 
-    topChart.data.labels = labels;
-    topChart.data.datasets[0].data = revenueData;
-    topChart.update();
-}
+//     topChart.data.labels = labels;
+//     topChart.data.datasets[0].data = revenueData;
+//     topChart.update();
+// }
 
 function initializeFiltersAndCharts() {
     fetch('./script/finalDataCoffee.json')
         .then(response => response.json())
         .then(fetchedData => {
             data = fetchedData;
+
             updateMetrics(data);
-            createProductTypeChart(data);
-            createBusyHourChart(data);
-            createBusyWeekChart(data);
-            createWeekenddaysChart(data); 
-            createCategoryChart(data); 
-            createTopChart(data);
+            // updateChart(data);
+            // updateStoreChart(data);
+            // createPriceRangeChart(data);
+            // createSeasonChart(data);
+            // createProductTypeChart(data);
+            // createBusyHourChart(data);
+            // createBusyWeekChart(data);
+            // createWeekenddaysChart(data);
+            // createCategoryChart(data);
+            // createTopChart(data);
 
             const storeFilter = document.getElementById('storeFilter');
             const uniqueStores = [...new Set(data.map(item => item.store_location))];
@@ -569,5 +574,3 @@ function initializeFiltersAndCharts() {
 }
 
 initializeFiltersAndCharts();
-
-

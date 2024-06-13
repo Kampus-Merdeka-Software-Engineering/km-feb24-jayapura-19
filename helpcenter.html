@@ -63,7 +63,7 @@
             <p>Please fill out the form below and we'll get back to you shortly.</p>
         </div>
 
-        <form class="form-body">
+        <form class="form-body" onsubmit="return myFunction()">
             <fieldset class="name-fieldset">
                 <div class="input-group">
                     <label for="firstName">First Name</label>
@@ -84,7 +84,7 @@
                 <textarea id="message" name="message" placeholder="Enter your message"></textarea>
             </div>
             <div class="input-group">
-                <button type="submit">Submit</button>
+                <button onclick="myFunction()" type="submit">Submit</button>
             </div>
         </form>
 
@@ -112,6 +112,13 @@
     <script src="./script/interaction.js"></script>
     <!-- Chart.JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function myFunction() {
+            alert("Terimakasih, keluhan anda sudah kami terima");
+            return false;
+        }
+    </script>
+
 </body>
 
-</html>
+</html>w

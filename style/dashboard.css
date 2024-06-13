@@ -22,7 +22,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
+    height: 100%;
     width: 80px;
     background-color: #18191B;
     border: 1.5px solid #252627;
@@ -30,15 +30,13 @@ body {
     transition: width 0.3s ease;
 }
 
+/* .sidebar.active ~ .header{
+    margin-left: 260px;
+    width: calc(100%-260px);
+} */
 
-.sidebar .akun{
-    margin-top: 80px;
-}
 
-.sidebar .profile{
-    height: 35px;
-    
-}
+
 
 .sidebar.active {
     width: 260px;

@@ -1,4 +1,4 @@
-const rowsPerPage = 1000; // Jumlah baris per halaman
+const rowsPerPage = 1000; 
 let currentPage = 1;
 let data = [];
 let filteredData = [];
@@ -11,7 +11,7 @@ function sortData(data) {
 // Fungsi untuk menampilkan tabel
 function displayTable(data, page) {
     const tableBody = document.querySelector('#data-table tbody');
-    tableBody.innerHTML = ''; // Kosongkan tabel sebelum mengisi data baru
+    tableBody.innerHTML = ''; //buat ngosongin table
     
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
@@ -29,7 +29,7 @@ function displayTable(data, page) {
 
         columns.forEach(column => {
             const cell = document.createElement('td');
-            cell.textContent = item[column] || ''; // Menangani nilai null atau undefined
+            cell.textContent = item[column] || ''; 
             row.appendChild(cell);
         });
 
@@ -137,7 +137,7 @@ function filterData() {
 fetch('./script/finalDataCoffee.json')
     .then(response => response.json())
     .then(fetchedData => {
-        data = sortData(fetchedData); // Mengurutkan data
+        data = fetchedData; 
         filteredData = data; // Inisialisasi filteredData dengan semua data
         displayTable(filteredData, currentPage);
 
